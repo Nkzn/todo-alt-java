@@ -1,4 +1,4 @@
-package jp.water_cell.android.template.espresso;
+package jp.water_cell.android.template;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

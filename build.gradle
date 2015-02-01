@@ -8,7 +8,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:1.0.0'
         classpath 'com.uphyca.gradle:gradle-android-apt-plugin:0.9.4'
         classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.14.1'
+        classpath 'com.github.jcandksolutions.gradle:android-unit-test:2.1.1'
     }
 }
 
@@ -42,8 +42,11 @@ project.ext {
     jodaTimeVersion = '2.6'
     butterKnifeVersion = '6.0.0'
 
-    junitVersion = '4.11'
+    junitVersion = '4.12'
+    hamcrestVersion = '1.1'
     robolectricVersion = '2.4'
+    espressoVersion = '2.0'
+    testingSupportVersion = '0.1'
 }
 
 task wrapper(type: Wrapper) {

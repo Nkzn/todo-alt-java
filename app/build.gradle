@@ -1,7 +1,6 @@
 apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-apply plugin: 'robolectric'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -13,9 +12,7 @@ android {
         targetSdkVersion 18 // 19以上はRobolectricが未対応
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
-
-        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -29,12 +26,6 @@ android {
         checkAllWarnings true
         warningsAsErrors true
         checkReleaseBuilds true
-    }
-
-    sourceSets {
-        androidTest {
-            setRoot('src/test')
-        }
     }
 
     packagingOptions {
@@ -87,20 +78,6 @@ if (project.hasProperty('keyPassword')) {
     android.signingConfigs.release.keyPassword = keyPassword
 }
 
-robolectric {
-    // configure the set of classes for JUnit tests
-    include '**/*Test.class'
-    exclude '**/espresso/**/*.class'
-
-    // configure max heap size of the test JVM
-    maxHeapSize = '2048m'
-}
-
-tasks.withType(Test).whenTaskAdded {
-    // play sevicesのVerifyError回避 (see https://github.com/robolectric/robolectric/issues/1186#issuecomment-53778180)
-    it.jvmArgs '-noverify'
-}
-
 dependencies {
     compile "com.android.support:appcompat-v7:${project.supportPackageVersion}"
 
@@ -108,11 +85,24 @@ dependencies {
 
     compile "com.jakewharton:butterknife:${project.butterKnifeVersion}"
     apt "com.jakewharton:butterknife:${project.butterKnifeVersion}"
+}
 
-    androidTestCompile("junit:junit:${project.junitVersion}") {
+apply plugin: 'android-unit-test'
+
+dependencies {
+    // Espresso
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${project.espressoVersion}")
+    androidTestCompile("com.android.support.test:testing-support-lib:${project.testingSupportVersion}")
+
+    // Robolectric
+    testCompile("junit:junit:${project.junitVersion}") {
         exclude module: 'hamcrest-core'
     }
-    androidTestCompile("org.robolectric:robolectric:${project.robolectricVersion}") {
+    testCompile "org.hamcrest:hamcrest-core:${project.hamcrestVersion}"
+    testCompile "org.hamcrest:hamcrest-library:${project.hamcrestVersion}"
+    testCompile "org.hamcrest:hamcrest-integration:${project.hamcrestVersion}"
+
+    testCompile("org.robolectric:robolectric:${project.robolectricVersion}") {
         exclude module: 'classworlds'
         exclude module: 'commons-logging'
         exclude module: 'httpclient'
@@ -129,7 +119,11 @@ dependencies {
         exclude module: 'wagon-http-lightweight'
         exclude module: 'wagon-provider-api'
     }
-    androidTestCompile files('libs/espresso-1.1-bundled.jar')
+}
+
+tasks.withType(Test).whenTaskAdded {
+    // play sevicesのVerifyError回避 (see https://github.com/robolectric/robolectric/issues/1186#issuecomment-53778180)
+    it.jvmArgs '-noverify'
 }
 
 // テスト対象のActivityがFragmentActivityを継承しているとNoClassDefFoundError出る問題
