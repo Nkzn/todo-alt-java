@@ -9,13 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
+import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class MainActivityUiTest extends ActivityInstrumentationTestCase2<MainActivity> {
+
+    MainActivity activity;
 
     public MainActivityUiTest() {
         super(MainActivity.class);
@@ -25,11 +26,12 @@ public class MainActivityUiTest extends ActivityInstrumentationTestCase2<MainAct
     public void setUp() throws Exception {
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
-        getActivity();
+        activity = getActivity();
     }
 
     @Test
-    public void testTvDisplay() {
-        onView(withId(R.id.tv_hello)).check(matches(withText("Hello world!")));
+    public void test() {
+        assertThat(activity.toolbar, is(notNullValue()));
+        assertThat(activity.lvSamples, is(notNullValue()));
     }
 }
