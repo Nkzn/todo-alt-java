@@ -91,8 +91,14 @@ apply plugin: 'android-unit-test'
 
 dependencies {
     // Espresso
-    androidTestCompile("com.android.support.test.espresso:espresso-core:${project.espressoVersion}")
-    androidTestCompile("com.android.support.test:testing-support-lib:${project.testingSupportVersion}")
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${project.espressoVersion}") {
+        exclude module: 'hamcrest-core'
+        exclude module: 'hamcrest-integration'
+        exclude module: 'hamcrest-library'
+    }
+    androidTestCompile("com.android.support.test:testing-support-lib:${project.testingSupportVersion}") {
+        exclude module: 'hamcrest-core'
+    }
 
     // Robolectric
     testCompile("junit:junit:${project.junitVersion}") {
