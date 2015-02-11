@@ -1,4 +1,4 @@
-package jp.water_cell.android.template;
+package jp.water_cell.android.sample.todo;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

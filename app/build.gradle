@@ -7,7 +7,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "jp.water_cell.android.template"
+        applicationId "jp.water_cell.android.sample.todo"
         minSdkVersion 15
         targetSdkVersion 18 // 19以上はRobolectricが未対応
         versionCode 1

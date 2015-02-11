@@ -1,8 +1,6 @@
-package jp.water_cell.android.template;
+package jp.water_cell.android.sample.todo;
 
 import android.app.Application;
-
-import jp.water_cell.android.template.prngfix.PRNGFixes;
 
 public class MyApplication extends Application {
 
@@ -10,6 +8,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        PRNGFixes.apply();
+        if (!BuildConfig.DEBUG) {
+            PRNGFixes.apply();
+        }
     }
 }

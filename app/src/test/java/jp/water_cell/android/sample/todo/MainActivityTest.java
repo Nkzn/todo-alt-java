@@ -1,10 +1,9 @@
-package jp.water_cell.android.template;
+package jp.water_cell.android.sample.todo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
