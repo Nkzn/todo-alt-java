@@ -11,11 +11,19 @@ public class Todo implements Parcelable {
     String description;
     boolean done;
 
+    private Todo(Builder builder) {
+        this.id = builder.id;
+        this.timestamp = builder.timestamp;
+        this.title = builder.title;
+        this.description = builder.description;
+        this.done = builder.done;
+    }
+
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    void setId(long id) {
         this.id = id;
     }
 
@@ -23,7 +31,7 @@ public class Todo implements Parcelable {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -31,7 +39,7 @@ public class Todo implements Parcelable {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 
@@ -39,7 +47,7 @@ public class Todo implements Parcelable {
         return description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 
@@ -47,7 +55,7 @@ public class Todo implements Parcelable {
         return done;
     }
 
-    public void setDone(boolean done) {
+    void setDone(boolean done) {
         this.done = done;
     }
 
@@ -123,4 +131,41 @@ public class Todo implements Parcelable {
             return new Todo[size];
         }
     };
+
+    public static class Builder {
+        long id;
+        long timestamp;
+        String title;
+        String description;
+        boolean done;
+
+        public Builder id(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder timestamp(long timestamp) {
+            this.timestamp = timestamp;
+            return this;
+        }
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder done(boolean done) {
+            this.done = done;
+            return this;
+        }
+
+        public Todo build() {
+            return new Todo(this);
+        }
+    }
 }
