@@ -32,6 +32,6 @@ public class MainActivityUiTest extends ActivityInstrumentationTestCase2<MainAct
     @Test
     public void test() {
         assertThat(activity.toolbar, is(notNullValue()));
-        assertThat(activity.lvSamples, is(notNullValue()));
+        assertThat(activity.listView, is(notNullValue()));
     }
 }

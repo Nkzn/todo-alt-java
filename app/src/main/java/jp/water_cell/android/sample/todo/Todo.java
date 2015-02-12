@@ -133,11 +133,11 @@ public class Todo implements Parcelable {
     };
 
     public static class Builder {
-        long id;
-        long timestamp;
-        String title;
-        String description;
-        boolean done;
+        private long id;
+        private long timestamp;
+        private String title;
+        private String description;
+        private boolean done;
 
         public Builder id(long id) {
             this.id = id;
