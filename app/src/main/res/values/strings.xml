@@ -2,5 +2,7 @@
 <resources>
 
     <string name="app_name">TodoJava</string>
+    <string name="add">追加</string>
+    <string name="new_todo">新しいTODO</string>
 
 </resources>
