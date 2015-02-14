@@ -2,8 +2,16 @@ package jp.water_cell.android.sample.todo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 public class Todo implements Parcelable {
+
+    public static final String TABLE_NAME = "todos";
+    public static final String COLUMN_NAME_ID = BaseColumns._ID;
+    public static final String COLUMN_NAME_TITLE = "title";
+    public static final String COLUMN_NAME_DESCRIPTION = "description";
+    public static final String COLUMN_NAME_TIMESTAMP = "timestamp";
+    public static final String COLUMN_NAME_DONE = "done";
 
     long id;
     long timestamp;
