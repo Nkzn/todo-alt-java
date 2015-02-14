@@ -3,24 +3,48 @@ package jp.water_cell.android.sample.todo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
 
 import java.util.Random;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class TodoAddActivity extends ActionBarActivity {
 
     public static final String RESULT_CODE_TODO = TodoAddActivity.class.getCanonicalName() + ".result_todo";
     public static final String EXTRA_EDIT_SOURCE = TodoAddActivity.class.getCanonicalName() + ".edit_source";
 
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @InjectView(R.id.et_title)
+    EditText etTitle;
+
+    @InjectView(R.id.et_description)
+    EditText etDescription;
+
+    @InjectView(R.id.sw_done)
+    Switch swDone;
+
+    @InjectView(R.id.btn_save)
+    Button btnSave;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_todo_add);
+        ButterKnife.inject(this);
+        setSupportActionBar(toolbar);
 
-        final Button button = new Button(this);
-        button.setText("push");
-        button.setOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -42,10 +66,6 @@ public class TodoAddActivity extends ActionBarActivity {
                 finish();
             }
         });
-
-        setContentView(button);
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
