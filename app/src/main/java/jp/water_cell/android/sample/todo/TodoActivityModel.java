@@ -38,7 +38,7 @@ public class TodoActivityModel {
         adapter.addAll(getAll());
     }
 
-    private List<Todo> getAll() {
+    List<Todo> getAll() {
         return null;
     }
 
