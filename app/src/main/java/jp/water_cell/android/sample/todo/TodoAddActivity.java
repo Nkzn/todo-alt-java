@@ -12,6 +12,7 @@ import java.util.Random;
 public class TodoAddActivity extends ActionBarActivity {
 
     public static final String RESULT_CODE_TODO = TodoAddActivity.class.getCanonicalName() + ".result_todo";
+    public static final String EXTRA_EDIT_SOURCE = TodoAddActivity.class.getCanonicalName() + ".edit_source";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
