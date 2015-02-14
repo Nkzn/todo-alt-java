@@ -101,7 +101,7 @@ public class TodoActivity extends ActionBarActivity {
                                 startActivityForResult(intent, REQUEST_CODE_EDIT);
                                 break;
                             case 1:
-
+                                deleteTodo(todo);
                                 break;
                         }
                         dialog.dismiss();
