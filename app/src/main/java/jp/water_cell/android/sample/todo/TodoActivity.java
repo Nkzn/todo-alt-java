@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -39,11 +37,9 @@ public class TodoActivity extends ActionBarActivity {
 
         setSupportActionBar(toolbar);
 
-        model = new TodoActivityModel();
+        model = new TodoActivityModel(this);
 
-        TodoAdapter adapter = new TodoAdapter(this, new ArrayList<Todo>());
-
-        listView.setAdapter(adapter);
+        listView.setAdapter(model.getAdapter());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

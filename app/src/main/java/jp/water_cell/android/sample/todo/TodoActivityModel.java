@@ -14,11 +14,26 @@ public class TodoActivityModel {
     }
 
     public TodoAdapter getAdapter() {
+        refreshAdapter();
         return adapter;
     }
 
     public void create(Todo todo) {
 
+        refreshAdapter();
+    }
+
+    public void update(Todo todo) {
+
+        refreshAdapter();
+    }
+
+    public void delete(long id) {
+
+        refreshAdapter();
+    }
+
+    private void refreshAdapter() {
         adapter.clear();
         adapter.addAll(getAll());
     }
@@ -27,15 +42,4 @@ public class TodoActivityModel {
         return null;
     }
 
-    public void update(Todo todo) {
-
-        adapter.clear();
-        adapter.addAll(getAll());
-    }
-
-    public void delete(long id) {
-
-        adapter.clear();
-        adapter.addAll(getAll());
-    }
 }
