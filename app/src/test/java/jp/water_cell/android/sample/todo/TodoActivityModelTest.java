@@ -8,9 +8,8 @@ import org.robolectric.RobolectricTestRunner;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
 public class TodoActivityModelTest {

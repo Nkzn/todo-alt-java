@@ -14,11 +14,11 @@ import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainActivityUiTest extends ActivityInstrumentationTestCase2<TodoActivity> {
+public class TodoActivityUiTest extends ActivityInstrumentationTestCase2<TodoActivity> {
 
     TodoActivity activity;
 
-    public MainActivityUiTest() {
+    public TodoActivityUiTest() {
         super(TodoActivity.class);
     }
 
