@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">@color/material_blue_grey_800</color>
-    <color name="colorPrimaryDark">@color/material_blue_grey_900</color>
-
+    <color name="colorPrimary">#4a94cd</color>
+    <color name="colorPrimaryDark">#2c6d9f</color>
 </resources>
