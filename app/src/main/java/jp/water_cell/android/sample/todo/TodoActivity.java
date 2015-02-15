@@ -43,13 +43,13 @@ public class TodoActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TodoActivity.this.onItemClick((Todo) parent.getItemAtPosition(position));
+                showDialogEditOrDelete((Todo) parent.getItemAtPosition(position));
             }
         });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                TodoActivity.this.onItemLongClick((Todo) parent.getItemAtPosition(position));
+                toggleCheck((Todo) parent.getItemAtPosition(position));
                 return true;
             }
         });
@@ -92,7 +92,7 @@ public class TodoActivity extends ActionBarActivity {
         }
     }
 
-    void onItemClick(final Todo todo) {
+    void showDialogEditOrDelete(final Todo todo) {
 
         new AlertDialog.Builder(this)
                 .setItems(new String[]{
@@ -117,7 +117,7 @@ public class TodoActivity extends ActionBarActivity {
                 .show();
     }
 
-    void onItemLongClick(Todo todo) {
+    void toggleCheck(Todo todo) {
         Todo doneToggled = new Todo.Builder(todo)
                 .done(!todo.isDone())
                 .build();
