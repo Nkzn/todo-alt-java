@@ -9,10 +9,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.CoreMatchers.*;
 
-@RunWith(AndroidJUnit4.class)
 @LargeTest
 public class TodoActivityUiTest extends ActivityInstrumentationTestCase2<TodoActivity> {
 
@@ -22,16 +23,17 @@ public class TodoActivityUiTest extends ActivityInstrumentationTestCase2<TodoAct
         super(TodoActivity.class);
     }
 
-    @Before
     public void setUp() throws Exception {
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
         activity = getActivity();
     }
 
-    @Test
-    public void test() {
-        assertThat(activity.toolbar, is(notNullValue()));
-        assertThat(activity.listView, is(notNullValue()));
+    public void test_各ViewがInjectされていること() {
+        getActivity();
+
+        onView(withId(R.id.toolbar)).check(matches(notNullValue()));
+        onView(withId(R.id.list_view)).check(matches(notNullValue()));
+
     }
 }
