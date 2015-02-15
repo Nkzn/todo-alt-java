@@ -12,5 +12,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="edit_todo">Edit Todo</string>
+    <string name="save">save</string>
 
 </resources>
