@@ -43,13 +43,13 @@ public class TodoActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDialogEditOrDelete((Todo) parent.getItemAtPosition(position));
+                toggleCheck((Todo) parent.getItemAtPosition(position));
             }
         });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                toggleCheck((Todo) parent.getItemAtPosition(position));
+                showDialogEditOrDelete((Todo) parent.getItemAtPosition(position));
                 return true;
             }
         });
