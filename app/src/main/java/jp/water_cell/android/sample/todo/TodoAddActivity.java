@@ -14,6 +14,7 @@ import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class TodoAddActivity extends ActionBarActivity {
 
@@ -44,28 +45,13 @@ public class TodoAddActivity extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if (savedInstanceState == null) {
+            Todo editSource = getIntent().getParcelableExtra(EXTRA_EDIT_SOURCE);
+            etTitle.setText(editSource.getTitle());
+            etDescription.setText(editSource.getDescription());
+            swDone.setChecked(editSource.isDone());
+        }
 
-                Random rand = new Random();
-                long id = rand.nextLong();
-
-                Todo todo = new Todo.Builder()
-                        .id(id)
-                        .title("タイトル" + id)
-                        .description("なかみ" + id)
-                        .timestamp(1234567890)
-                        .done(true)
-                        .build();
-
-                Intent intent = new Intent();
-                intent.putExtra(RESULT_CODE_TODO, todo);
-
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
     }
 
     @Override
@@ -78,5 +64,23 @@ public class TodoAddActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick(R.id.btn_save)
+    void onClickSave() {
+        Todo editSource = getIntent().getParcelableExtra(EXTRA_EDIT_SOURCE);
+
+        Todo todo = new Todo.Builder(editSource)
+                .title(etTitle.getText().toString())
+                .description(etDescription.getText().toString())
+                .timestamp(System.currentTimeMillis())
+                .done(swDone.isChecked())
+                .build();
+
+        Intent intent = new Intent();
+        intent.putExtra(RESULT_CODE_TODO, todo);
+
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

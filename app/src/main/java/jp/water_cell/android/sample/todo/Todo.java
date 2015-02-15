@@ -147,6 +147,21 @@ public class Todo implements Parcelable {
         private String description;
         private boolean done;
 
+        public Builder() {
+        }
+
+        public Builder(Todo source) {
+            if (source == null) {
+                throw new IllegalArgumentException("source must not be null");
+            }
+
+            this.id = source.getId();
+            this.timestamp = source.getTimestamp();
+            this.title = source.getTitle();
+            this.description = source.getDescription();
+            this.done = source.isDone();
+        }
+
         public Builder id(long id) {
             this.id = id;
             return this;
