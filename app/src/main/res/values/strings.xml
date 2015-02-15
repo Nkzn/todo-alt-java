@@ -11,5 +11,6 @@
     <string name="done_question">done?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="edit_todo">Edit Todo</string>
 
 </resources>

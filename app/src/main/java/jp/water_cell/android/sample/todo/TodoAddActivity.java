@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-
-import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -45,11 +42,17 @@ public class TodoAddActivity extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Todo editSource = getIntent().getParcelableExtra(EXTRA_EDIT_SOURCE);
+        if (editSource != null) {
+            setTitle(R.string.edit_todo);
+        }
+
         if (savedInstanceState == null) {
-            Todo editSource = getIntent().getParcelableExtra(EXTRA_EDIT_SOURCE);
-            etTitle.setText(editSource.getTitle());
-            etDescription.setText(editSource.getDescription());
-            swDone.setChecked(editSource.isDone());
+            if (editSource != null) {
+                etTitle.setText(editSource.getTitle());
+                etDescription.setText(editSource.getDescription());
+                swDone.setChecked(editSource.isDone());
+            }
         }
 
     }
@@ -70,7 +73,7 @@ public class TodoAddActivity extends ActionBarActivity {
     void onClickSave() {
         Todo editSource = getIntent().getParcelableExtra(EXTRA_EDIT_SOURCE);
 
-        Todo todo = new Todo.Builder(editSource)
+        Todo todo = (editSource == null ? new Todo.Builder() : new Todo.Builder(editSource))
                 .title(etTitle.getText().toString())
                 .description(etDescription.getText().toString())
                 .timestamp(System.currentTimeMillis())
