@@ -46,6 +46,13 @@ public class TodoActivity extends ActionBarActivity {
                 TodoActivity.this.onItemClick((Todo) parent.getItemAtPosition(position));
             }
         });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                TodoActivity.this.onItemLongClick((Todo) parent.getItemAtPosition(position));
+                return true;
+            }
+        });
     }
 
     @Override
@@ -108,6 +115,14 @@ public class TodoActivity extends ActionBarActivity {
                     }
                 })
                 .show();
+    }
+
+    void onItemLongClick(Todo todo) {
+        Todo doneToggled = new Todo.Builder(todo)
+                .done(!todo.isDone())
+                .build();
+
+        model.update(doneToggled);
     }
 
     void deleteTodo(Todo todo) {
