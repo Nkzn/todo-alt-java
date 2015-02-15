@@ -39,7 +39,7 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
         holder.tvId.setText(String.format("#%1$d", item.getId()));
         holder.tvTitle.setText(item.getTitle());
         holder.tvDescription.setText(item.getDescription());
-        holder.tvTimestamp.setText(new DateTime(item.getTimestamp()).toString());
+        holder.tvTimestamp.setText(new DateTime(item.getTimestamp()).toString("yyyy.MM.dd HH:mm:ss"));
         holder.tvChecked.setVisibility(item.isDone() ? View.VISIBLE : View.GONE);
 
         return convertView;
