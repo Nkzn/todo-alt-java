@@ -1,9 +1,10 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.9.976'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.10.1316'
     }
 }
 
@@ -98,13 +99,11 @@ dependencies {
 
     compile "joda-time:joda-time:${project.jodaTimeVersion}"
 
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.9.976'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.10.1316'
 
     compile "com.jakewharton:butterknife:${project.butterKnifeVersion}"
     apt "com.jakewharton:butterknife:${project.butterKnifeVersion}"
 }
-
-apply plugin: 'android-unit-test'
 
 dependencies {
     // Espresso
