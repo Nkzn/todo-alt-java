@@ -84,6 +84,9 @@ public class TodoActivityModel {
             todos.add(todo);
         }
 
+        cursor.close();
+        db.close();
+
         return todos;
     }
 
